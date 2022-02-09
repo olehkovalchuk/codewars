@@ -2,24 +2,25 @@
 
 require 'prime'
 def gap(g, m, n)
-  return nil if n > 1100000
-  prime_arr = []
+  return nil if n > 1100000 || n <= m || g < 2 || m < 2
   result = []
+  first = 0
+  second = 0
   (m..n).to_a.each do |i|
-    prime_arr << i if i.prime?
-  end
-  prime_arr.each_with_index do |element, i|
-    if prime_arr[i+1] != nil
-      if (prime_arr[i+1] - prime_arr[i]) == g
-        result << prime_arr[i]
-        result << prime_arr[i+1]
-        break
-      end
+    second = i if i.prime?
+    if (first - second).abs == g
+      result << first
+      result << second
+      break
     else
-      return nil
+      first = second
     end
   end
-  result
+  if first != second
+    result               # може бути одне просте число, 
+  else                   # яке запишеться і в first і в second
+    nil
+  end
 end
 
 ################### cheking ###################
