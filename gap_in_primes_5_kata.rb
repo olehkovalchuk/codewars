@@ -16,11 +16,7 @@ def gap(g, m, n)
       first = second
     end
   end
-  if first != second
-    result               # може бути одне просте число, 
-  else                   # яке запишеться і в first і в second
-    nil
-  end
+  (first != second) ? result : nil # може бути одне просте число, яке запишеться і в first і в second
 end
 
 ################### cheking ###################
