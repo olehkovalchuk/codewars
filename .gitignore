@@ -1,3 +1,5 @@
 .rspec
-.bundle
 /spec
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
