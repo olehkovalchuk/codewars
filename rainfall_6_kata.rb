@@ -1,45 +1,46 @@
 # link https://www.codewars.com/kata/rainfall
 
-def value_of_month (town, strng)
-    month_values = []
-    data_new = strng.split("\n").each_with_object({}) do |str, hsh|
-        city, city_value = str.split(':')
-        hsh[city] = city_value.split(',').each_with_object({}) do |s, h|
-            month, value = s.split(' ')
-            h[month] = value
-        end
-    end 
-    return [] if data_new[town].nil?
-    data_new[town].each do |i|
-        res = i[1].to_f
-        month_values.push(res)
+def value_of_month(town, strng)
+  month_values = []
+  data_new = strng.split("\n").each_with_object({}) do |str, hsh|
+    city, city_value = str.split(':')
+    hsh[city] = city_value.split(',').each_with_object({}) do |s, h|
+      month, value = s.split(' ')
+      h[month] = value
     end
-    month_values
   end
-  
-  def mean(town, strng = '') 
-    transformed_data = value_of_month(town, strng)
-    return -1 if transformed_data.empty?
-  
-    result = 0
-    value_of_month(town, strng).each do |i|
-        result += i
-    end
-    result/value_of_month(town, strng).length
+  return [] if data_new[town].nil?
+
+  data_new[town].each do |i|
+    res = i[1].to_f
+    month_values.push(res)
   end
-  
-  def variance(town, strng = '')
-    transformed_data = value_of_month(town, strng)
-    return -1 if transformed_data.empty?
-  
-    m = mean(town, strng)
-    sum = 0.0
-    transformed_data.each {|v| sum += (v-m)**2 }
-    sum/value_of_month(town, strng).length  
+  month_values
+end
+
+def mean(town, strng = '')
+  transformed_data = value_of_month(town, strng)
+  return -1 if transformed_data.empty?
+
+  result = 0
+  value_of_month(town, strng).each do |i|
+    result += i
   end
+  result / value_of_month(town, strng).length
+end
+
+def variance(town, strng = '')
+  transformed_data = value_of_month(town, strng)
+  return -1 if transformed_data.empty?
+
+  m = mean(town, strng)
+  sum = 0.0
+  transformed_data.each { |v| sum += (v - m)**2 }
+  sum / value_of_month(town, strng).length
+end
 
 ################### cheking ###################
-# data = 
+# data =
 #      "Rome:Jan 81.2,Feb 63.2,Mar 70.3,Apr 55.7,May 53.0,Jun 36.4,Jul 17.5,Aug 27.5,Sep 60.9,Oct 117.7,Nov 111.0,Dec 97.9" + "\n" +
 #      "London:Jan 48.0,Feb 38.9,Mar 39.9,Apr 42.2,May 47.3,Jun 52.1,Jul 59.5,Aug 57.2,Sep 55.4,Oct 62.0,Nov 59.0,Dec 52.9" + "\n" +
 #      "Paris:Jan 182.3,Feb 120.6,Mar 158.1,Apr 204.9,May 323.1,Jun 300.5,Jul 236.8,Aug 192.9,Sep 66.3,Oct 63.3,Nov 83.2,Dec 154.7" + "\n" +
