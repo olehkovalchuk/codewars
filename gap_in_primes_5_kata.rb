@@ -2,7 +2,8 @@
 
 require 'prime'
 def gap(g, m, n)
-  return nil if n > 1100000 || n <= m || g < 2 || m < 2
+  return nil if n > 1_100_000 || n <= m || g < 2 || m < 2
+
   result = []
   first = 0
   second = 0
@@ -16,9 +17,9 @@ def gap(g, m, n)
       first = second
     end
   end
-  (first != second) ? result : nil # може бути одне просте число, яке запишеться і в first і в second
+  first != second ? result : nil # може бути одне просте число, яке запишеться і в first і в second
 end
 
 ################### cheking ###################
 
-puts gap(8,300,400).to_s
+puts gap(8, 300, 400).to_s
